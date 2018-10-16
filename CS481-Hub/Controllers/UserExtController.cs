@@ -31,13 +31,15 @@ namespace CS481_Hub.Controllers
         // POST:
         //This method gets passed the UserExt model from the html page and adds it into the database. 
         //We may need to add some field validation later.
+        //this method is an "async" method, this allows for the thread to be freed up until this is ready to happen
+        //may not be very necessary for this but its probably good practice to do so.
         [HttpPost]
-        public ActionResult PostExtInfo (USER_EXT userExtModel)
+        public async Task<ActionResult> PostExtInfo (USER_EXT userExtModel)
         {
             userExtModel.USER_ID = User.Identity.GetUserId();
             userExtModel.void_ind = "n";
             db.User_ext.Add(userExtModel);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
             
         }
