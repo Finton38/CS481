@@ -20,6 +20,17 @@ namespace CS481_Hub.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        //**Also important to note that migrations need to be done every time something within ApplicationDbContext gets changed.**
+        //https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
+        //This link talks about migration changes
+
+
+        public DbSet<USER_EXT> User_ext { get; set;}
+        public DbSet<BLOG> Blogs { get; set;}
+        public DbSet<Available_API> Available_APIs { get; set;}
+        public DbSet<USER_API_XREF> USER_APIs { get; set;}
+       
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
