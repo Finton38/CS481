@@ -33,6 +33,7 @@ namespace CS481_Hub.Controllers
         //We may need to add some field validation later.
         //this method is an "async" method, this allows for the thread to be freed up until this is ready to happen
         //may not be very necessary for this but its probably good practice to do so.
+        //test comment
         [HttpPost]
         public async Task<ActionResult> PostExtInfo (USER_EXT userExtModel)
         {
