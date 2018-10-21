@@ -9,12 +9,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CS481_Hub.Models;
-
 namespace CS481_Hub.Controllers
 {
     public class UserExtController : Controller
     {
         private ApplicationDbContext db;
+
 
         public UserExtController()
         {
@@ -46,6 +46,7 @@ namespace CS481_Hub.Controllers
         {
             if (Request.IsAuthenticated)
             {
+                
                 userExtModel.USER_ID = User.Identity.GetUserId();
                 userExtModel.void_ind = "n";
                 db.User_ext.Add(userExtModel);
