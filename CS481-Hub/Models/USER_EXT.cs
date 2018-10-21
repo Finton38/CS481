@@ -15,11 +15,15 @@ namespace CS481_Hub.Models
 
     public partial class USER_EXT
     {
+        [Required]
         [Key]
         public string USER_ID { get; set; }
+        [Required]
         public string FIRST_NM { get; set; }
         public string LAST_NM { get; set; }
+        [Required]
         public string ZIPCODE { get; set; }
+        [Required]
         public string void_ind { get; set; }
     }
 }

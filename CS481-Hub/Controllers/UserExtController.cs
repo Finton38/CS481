@@ -26,7 +26,14 @@ namespace CS481_Hub.Controllers
         // Returns the view for the page "UserExt/UserExtCreate.cshtml"
         public ActionResult UserExtCreate()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         // POST:
         //This method gets passed the UserExt model from the html page and adds it into the database. 
@@ -37,11 +44,18 @@ namespace CS481_Hub.Controllers
         [HttpPost]
         public async Task<ActionResult> PostExtInfo (USER_EXT userExtModel)
         {
-            userExtModel.USER_ID = User.Identity.GetUserId();
-            userExtModel.void_ind = "n";
-            db.User_ext.Add(userExtModel);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+            if (Request.IsAuthenticated)
+            {
+                userExtModel.USER_ID = User.Identity.GetUserId();
+                userExtModel.void_ind = "n";
+                db.User_ext.Add(userExtModel);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             
         }
 
