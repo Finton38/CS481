@@ -12,17 +12,20 @@ namespace CS481_Hub.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Available_API
     {
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Available_API()
         {
             this.USER_API_XREF = new HashSet<USER_API_XREF>();
         }
    
-        [Key]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int API_ID { get; set; }
+
         public string API_Name { get; set; }
         public string void_ind { get; set; }
     

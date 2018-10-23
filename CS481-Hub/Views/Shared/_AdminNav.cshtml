@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "_AdminNav";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<ul class="nav">
+    <a class="navbar-link">@Html.ActionLink("Add", "Index", "Admin")</a>
+    <a class="navbar-link">@Html.ActionLink("Update", "Update", "Admin")</a>
+</ul>
+
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+</div>
+
+
+
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)

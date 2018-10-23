@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CS481_Hub.Models.Available_API>
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminNav.cshtml";
+}
+
+<h2>Update</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("API Name")
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.API_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.API_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.API_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.API_ID })
+        </td>
+    </tr>
+}
+
+</table>
