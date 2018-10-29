@@ -25,18 +25,5 @@
             }
             ]
         </dd>
-        @*Modify information page*@
-        <dt>User Information: </dt>
-        <dd>
-            @*Im Trying to grab the current users Id to pass through to the controller*@
-
-            @Html.ActionLink("ChrisPage", "UserExtEdit", "UserExt", new { id = HttpContext.Current.User.Identity.GetUserId() }, null))
-
-        </dd>
-        <dd>
-            @Html.ActionLink("MyPage", "Index", "USER_EXT")
-
-        </dd>
-
     </dl>
 </div>

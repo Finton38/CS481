@@ -64,57 +64,56 @@ namespace CS481_Hub.Controllers
         }
 
 
-        // GET: USER_EXT/Edit/5
-        //*************We Need current user ID to pass through this************
-
-        public ActionResult Edit(string id)
+        public ActionResult UserExtEdit()
         {
-            id = User.Identity.GetUserId();
+            if (Request.IsAuthenticated)
+            {
+                String currentUserId = User.Identity.GetUserId();
+                var userInfo = db.User_ext.SingleOrDefault(v => v.USER_ID == currentUserId);
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (userInfo == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    return View(userInfo);
+                }
             }
-            USER_EXT uSER_EXT = db.User_ext.Find(id);
-            if (uSER_EXT == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(uSER_EXT);
         }
 
-        // POST: USER_EXT/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //need to return to this and make async****
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "USER_ID,FIRST_NM,LAST_NM,ZIPCODE,void_ind")] USER_EXT uSER_EXT)
+        public ActionResult UpdateUserInfo(USER_EXT userInfo)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)
             {
-                db.Entry(uSER_EXT).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var previousInfo = db.User_ext.SingleOrDefault(v => v.USER_ID == userInfo.USER_ID);
+                if(previousInfo == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    previousInfo.FIRST_NM = userInfo.FIRST_NM;
+                    previousInfo.LAST_NM = userInfo.LAST_NM;
+                    previousInfo.ZIPCODE = userInfo.ZIPCODE;
+                    previousInfo.USER_ID = userInfo.USER_ID;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            return View(uSER_EXT);
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
-
-        // GET: USER_EXT/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            USER_EXT uSER_EXT = db.User_ext.Find(id);
-            if (uSER_EXT == null)
-            {
-                return HttpNotFound();
-            }
-            return View(uSER_EXT);
-        }
-
-
-
+    
     }
 }

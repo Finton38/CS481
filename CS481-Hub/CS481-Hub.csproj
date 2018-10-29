@@ -201,7 +201,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserExtController.cs" />
-    <Compile Include="Controllers\USER_EXTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -326,11 +325,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Update.cshtml" />
     <Content Include="Views\UserExt\UserExtEdit.cshtml" />
-    <Content Include="Views\USER_EXT\Create.cshtml" />
-    <Content Include="Views\USER_EXT\Delete.cshtml" />
-    <Content Include="Views\USER_EXT\Details.cshtml" />
-    <Content Include="Views\USER_EXT\Edit.cshtml" />
-    <Content Include="Views\USER_EXT\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
