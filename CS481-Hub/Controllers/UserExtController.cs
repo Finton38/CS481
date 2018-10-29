@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CS481_Hub.Models;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
 namespace CS481_Hub.Controllers
 {
     public class UserExtController : Controller
@@ -58,6 +62,59 @@ namespace CS481_Hub.Controllers
             }
             
         }
+
+
+        // GET: USER_EXT/Edit/5
+        //*************We Need current user ID to pass through this************
+
+        public ActionResult Edit(string id)
+        {
+            id = User.Identity.GetUserId();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            USER_EXT uSER_EXT = db.User_ext.Find(id);
+            if (uSER_EXT == null)
+            {
+                return HttpNotFound();
+            }
+            return View(uSER_EXT);
+        }
+
+        // POST: USER_EXT/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "USER_ID,FIRST_NM,LAST_NM,ZIPCODE,void_ind")] USER_EXT uSER_EXT)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(uSER_EXT).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(uSER_EXT);
+        }
+
+        // GET: USER_EXT/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            USER_EXT uSER_EXT = db.User_ext.Find(id);
+            if (uSER_EXT == null)
+            {
+                return HttpNotFound();
+            }
+            return View(uSER_EXT);
+        }
+
+
 
     }
 }
