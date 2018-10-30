@@ -8,21 +8,20 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Update Information</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.USER_ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FIRST_NM, "First Name" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FIRST_NM, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FIRST_NM, new { htmlAttributes = new { @class = "form-control" , required = "required" } })
+                @Html.EditorFor(model => model.FIRST_NM, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.FIRST_NM, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LAST_NM, "Last Name" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LAST_NM, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LAST_NM, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LAST_NM, "", new { @class = "text-danger" })
@@ -30,9 +29,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ZIPCODE, "ZipCode" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ZIPCODE, "ZipCode", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ZIPCODE, new { htmlAttributes = new { @class = "form-control" , required = "required" } })
+                @Html.EditorFor(model => model.ZIPCODE, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.ZIPCODE, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,6 +41,11 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+    </div>
+
+
+    <div>
+        @Html.ActionLink("Change your password", "ChangePassword", "Manage")
     </div>
 }
 
