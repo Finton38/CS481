@@ -13,13 +13,11 @@ namespace CS481_Hub.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class USER_API_XREF
+    public partial class AspNetUserLogin
     {
-        public int API_ID { get; set; }
-        public string USER_ID { get; set; }
-        public string void_ind { get; set; }
-
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
         [Key]
-        public int xref_id { get; set; }
+        public string UserId { get; set; }
     }
 }

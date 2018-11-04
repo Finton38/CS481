@@ -12,18 +12,13 @@ namespace CS481_Hub.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
     public partial class USER_EXT
     {
-        [Required]
         [Key]
         public string USER_ID { get; set; }
-        [Required]
         public string FIRST_NM { get; set; }
         public string LAST_NM { get; set; }
-        [Required]
         public string ZIPCODE { get; set; }
-        [Required]
         public string void_ind { get; set; }
     }
 }

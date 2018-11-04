@@ -11,22 +11,19 @@ namespace CS481_Hub.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Available_API
+    
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Available_API()
+        public AspNetRole()
         {
-            this.USER_API_XREF = new HashSet<USER_API_XREF>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        [Key]
-        public int API_ID { get; set; }
-        public string API_Name { get; set; }
-        public string void_ind { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USER_API_XREF> USER_API_XREF { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

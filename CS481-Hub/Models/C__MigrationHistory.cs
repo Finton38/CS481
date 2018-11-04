@@ -11,15 +11,12 @@ namespace CS481_Hub.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class USER_API_XREF
+    
+    public partial class C__MigrationHistory
     {
-        public int API_ID { get; set; }
-        public string USER_ID { get; set; }
-        public string void_ind { get; set; }
-
-        [Key]
-        public int xref_id { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

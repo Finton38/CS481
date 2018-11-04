@@ -54,6 +54,7 @@ namespace CS481_Hub.Controllers
                 userExtModel.void_ind = "n";
                 db.User_ext.Add(userExtModel);
                 await db.SaveChangesAsync();
+                await AddInitialAPIsAsync(User.Identity.GetUserId());
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -63,7 +64,7 @@ namespace CS481_Hub.Controllers
             
         }
 
-
+        //return the current users extended information to be updated
         public ActionResult UserExtEdit()
         {
             if (Request.IsAuthenticated)
@@ -86,7 +87,8 @@ namespace CS481_Hub.Controllers
             }
         }
 
-        //need to return to this and make async****
+
+        //Update the current users extended information and save the changes
         [HttpPost]
         public ActionResult UpdateUserInfo(USER_EXT userInfo)
         {
@@ -103,9 +105,7 @@ namespace CS481_Hub.Controllers
                     previousInfo.LAST_NM = userInfo.LAST_NM;
                     previousInfo.ZIPCODE = userInfo.ZIPCODE;
                     previousInfo.USER_ID = userInfo.USER_ID;
-
                     db.SaveChanges();
-
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -113,6 +113,34 @@ namespace CS481_Hub.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+
+        //this method is used to add in APIs for th new user as soon as they register, this way the user can select which APIs they 
+        //wish to use on their profile.
+        [HttpPost]
+        public async Task<ActionResult> AddInitialAPIsAsync(String userId)
+        {
+            USER_API_XREF userAPI = new USER_API_XREF();
+
+            var AllAPIs = db.Available_APIs.ToList();
+            if(AllAPIs != null)
+            {
+                foreach (var api in AllAPIs)
+                {
+                    userAPI.API_ID = api.API_ID;
+                    userAPI.USER_ID = userId;
+                    userAPI.void_ind = "n";
+                    db.USER_APIs.Add(userAPI);
+                    await db.SaveChangesAsync();
+                }
+            }
+            else
+            {
+               return new HttpStatusCodeResult(999, "this didn't work as planned");
+            }
+         
+            return RedirectToAction("Index", "Home");
         }
     
     }

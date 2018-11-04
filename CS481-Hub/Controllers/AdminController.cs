@@ -50,11 +50,31 @@ namespace CS481_Hub.Controllers
                 api.void_ind = "n";
                 db.Available_APIs.Add(api);
                 await db.SaveChangesAsync();
+                addNewAPIToUsers(api.API_Name);
                 return RedirectToAction("Index", "Home");
             }else
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+
+        public ActionResult addNewAPIToUsers(String apiName)
+        {
+            var allUsers = db.Users.ToList();
+            USER_API_XREF userApi = new USER_API_XREF();
+            var newAPI = db.Available_APIs.SingleOrDefault(v => v.API_Name == apiName);
+            int apiID = newAPI.API_ID;
+
+            foreach (var user in allUsers)
+            {
+                userApi.API_ID = apiID;
+                userApi.USER_ID = user.Id;
+                userApi.void_ind = "n";
+                db.USER_APIs.Add(userApi);
+                db.SaveChanges();
+            }
+            return null;
         }
     }
 }
