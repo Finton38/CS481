@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CS481_Hub.Models.USER_API_XREF>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Available_API.API_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Available_API.API_Name)
+        </td>
+        <td>
+            @if (item.void_ind == "y")
+            {
+                @Html.ActionLink("Turn on", "TurnOn", new { id = item.xref_id })
+            }
+            else
+            {
+                @Html.ActionLink("Turn off", "TurnOff", new { id = item.xref_id })
+            }
+
+        </td>
+    </tr>
+}
+
+</table>

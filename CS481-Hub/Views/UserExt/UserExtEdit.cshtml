@@ -1,6 +1,7 @@
 ﻿@model CS481_Hub.Models.USER_EXT
 @{
     ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_EditProfileLayout.cshtml";
 }
 
 @using (Html.BeginForm("UpdateUserInfo", "UserExt", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

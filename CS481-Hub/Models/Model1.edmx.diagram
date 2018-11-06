@@ -4,23 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="797c60f9f2074debabaee14046443d89" Name="Diagram1">
-        <EntityTypeShape EntityType="cs481Model.Available_API" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cs481Model.BLOG" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cs481Model.USER_API_XREF" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cs481Model.USER_EXT" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="cs481Model.fk_apiid" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="cs481Model.C__MigrationHistory" Width="1.5" PointX="8.5" PointY="0.625" />
-        <EntityTypeShape EntityType="cs481Model.AspNetRole" Width="1.5" PointX="1.5" PointY="7.75" />
-        <EntityTypeShape EntityType="cs481Model.AspNetUserClaim" Width="1.5" PointX="6.5" PointY="7.875" />
-        <EntityTypeShape EntityType="cs481Model.AspNetUserLogin" Width="1.5" PointX="3.75" PointY="7.75" />
-        <EntityTypeShape EntityType="cs481Model.AspNetUser" Width="1.5" PointX="6" PointY="0.5" />
-        <AssociationConnector Association="cs481Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="cs481Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="cs481Model.fk_blog_userid" />
-        <AssociationConnector Association="cs481Model.fk_ext_userid" />
-        <AssociationConnector Association="cs481Model.fk_userid" />
-        <AssociationConnector Association="cs481Model.AspNetUserRoles" />
+      <Diagram DiagramId="9f314f5aebaa49a8a242ba7b5fa917de" Name="Diagram1">
+        <EntityTypeShape EntityType="CS481Model.Available_API" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS481Model.BLOG" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS481Model.USER_API_XREF" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS481Model.USER_EXT" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="CS481Model.fk_apiId" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

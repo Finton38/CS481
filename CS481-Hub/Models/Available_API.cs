@@ -21,10 +21,10 @@ namespace CS481_Hub.Models
             this.USER_API_XREF = new HashSet<USER_API_XREF>();
         }
     
-        [Key]
-        public int API_ID { get; set; }
         public string API_Name { get; set; }
         public string void_ind { get; set; }
+        [Key]
+        public int API_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USER_API_XREF> USER_API_XREF { get; set; }

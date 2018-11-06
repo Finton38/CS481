@@ -13,10 +13,10 @@ namespace CS481_Hub.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class cs481Entities : DbContext
+    public partial class Entities : DbContext
     {
-        public cs481Entities()
-            : base("name=cs481Entities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -29,10 +29,5 @@ namespace CS481_Hub.Models
         public virtual DbSet<BLOG> BLOGs { get; set; }
         public virtual DbSet<USER_API_XREF> USER_API_XREF { get; set; }
         public virtual DbSet<USER_EXT> USER_EXT { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

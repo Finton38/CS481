@@ -15,12 +15,12 @@ namespace CS481_Hub.Models
 
     public partial class BLOG
     {
-        [Key]
-        public int BLOG_ID { get; set; }
         public string USER_ID { get; set; }
         public string BLOG_TEXT { get; set; }
         public System.DateTime CREATE_DT { get; set; }
         public System.DateTime UPDATE_DT { get; set; }
         public string VOID_IND { get; set; }
+        [Key]
+        public int BLOG_ID { get; set; }
     }
 }

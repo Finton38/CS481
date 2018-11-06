@@ -50,7 +50,7 @@ namespace CS481_Hub.Controllers
                 api.void_ind = "n";
                 db.Available_APIs.Add(api);
                 await db.SaveChangesAsync();
-                addNewAPIToUsers(api.API_Name);
+                AddNewAPIToUsers(api.API_Name);
                 return RedirectToAction("Index", "Home");
             }else
             {
@@ -59,7 +59,7 @@ namespace CS481_Hub.Controllers
         }
 
 
-        public ActionResult addNewAPIToUsers(String apiName)
+        public ActionResult AddNewAPIToUsers(String apiName)
         {
             var allUsers = db.Users.ToList();
             USER_API_XREF userApi = new USER_API_XREF();
