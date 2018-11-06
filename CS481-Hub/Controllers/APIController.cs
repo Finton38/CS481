@@ -26,6 +26,7 @@ namespace CS481_Hub.Controllers
         }
 
         // GET: API
+        //get the all APIS for the current user in USER_API_XREF
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
@@ -40,7 +41,7 @@ namespace CS481_Hub.Controllers
             }
         }
 
-
+        //turn on the selected API by setting void ind to N
         public ActionResult TurnOn(int id)
         {
             var apiEntry = db.USER_APIs.SingleOrDefault(a => a.xref_id == id);
@@ -65,6 +66,7 @@ namespace CS481_Hub.Controllers
 
         }
 
+        //turn off the selected API by setting void ind to Y
         public ActionResult TurnOff(int id)
         {
             var apiEntry = db.USER_APIs.SingleOrDefault(a => a.xref_id == id);
