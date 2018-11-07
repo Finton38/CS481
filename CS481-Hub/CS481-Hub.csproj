@@ -205,6 +205,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\WeatherAPI.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Available_API.cs">
@@ -320,10 +321,10 @@
     <Content Include="Views\UserExt\UserExtEdit.cshtml" />
     <Content Include="Views\Shared\_EditProfileLayout.cshtml" />
     <Content Include="Views\API\Index.cshtml" />
+    <Content Include="Views\Home\Weather.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

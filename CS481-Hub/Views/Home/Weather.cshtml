@@ -1,0 +1,29 @@
+﻿@model CS481_Hub.Models.USER_EXT
+@{
+    ViewBag.Title = "Weather";
+}
+
+<h2>Weather</h2>
+<p id="Name"></p>
+<p id="Temp"></p>
+<p id="Humidity"></p>
+<button>Get Weather</button>
+
+@* Needed for jquery *@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+@* Ajax script on weather page that goes through the controller *@
+<script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                //razer syntax for home controller
+                $.get("@Url.Action("GetWeather", "Home")", function (response) {
+                    //response
+                    console.log(response);
+                    $("#Name").text(response.name);
+                    $("#Temp").text(response.main.temp);
+                    $("#Humidity").text(response.main.humidity);
+                });
+            });
+        });
+
+    </script>
