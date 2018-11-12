@@ -1,6 +1,8 @@
 ﻿@model CS481_Hub.Models.USER_EXT
 @{
     ViewBag.Title = "Weather";
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 }
 
 
@@ -11,8 +13,6 @@
 <button>Get Weather</button>
 
 
-@* Needed for jquery *@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 @* Ajax script on weather page that goes through the controller *@
 <script>
         $(document).ready(function () {
@@ -29,3 +29,6 @@
         });
 
 </script>
+
+
+
