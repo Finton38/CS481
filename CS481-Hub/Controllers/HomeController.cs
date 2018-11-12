@@ -48,6 +48,20 @@ namespace CS481_Hub.Controllers
             //AllowGet
             return Json(weather.getWeatherForcast(ext.ZIPCODE), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult News()
+        {
+            List<NewsAPI> newsList = new List<NewsAPI>();
+            int totalResults = new NewsAPI(0).returnTotalResults();
+
+            for(int i = 0; i < totalResults; i++)
+            {
+                newsList.Add(new NewsAPI(i));
+            }
+            ViewData["newsList"] = newsList;
+            return View();
+        }
+
     }
 
    

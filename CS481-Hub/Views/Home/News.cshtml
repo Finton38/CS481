@@ -1,0 +1,18 @@
+﻿@using CS481_Hub.Helpers;
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    var articles = (List<NewsAPI>)ViewData["newsList"];
+}
+
+@foreach (var article in @articles) // Print the list
+{
+    <h3>"@article.getTitle()" - @article.getSource()</h3>
+    <a href="@article.getURL()">go to article</a>
+    <hr />
+   // @Html.Label(article.getSource());
+}
