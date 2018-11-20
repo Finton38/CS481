@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CS481Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CS481Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Available_API">
           <Key>
             <PropertyRef Name="API_ID" />
@@ -13,16 +13,17 @@
           <Property Name="void_ind" Type="varchar" MaxLength="1" />
           <Property Name="API_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="BLOG">
+        <EntityType Name="BLOGS">
           <Key>
             <PropertyRef Name="BLOG_ID" />
           </Key>
           <Property Name="USER_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="BLOG_TEXT" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="CREATE_DT" Type="datetime" Nullable="false" />
-          <Property Name="UPDATE_DT" Type="datetime" Nullable="false" />
           <Property Name="VOID_IND" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="BLOG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATE_DT" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DT" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="USER_API_XREF">
           <Key>
@@ -62,7 +63,7 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
         </Association>
         <EntityContainer Name="CS481ModelStoreContainer">
           <EntitySet Name="Available_API" EntityType="Self.Available_API" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BLOG" EntityType="Self.BLOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BLOGS" EntityType="Self.BLOGS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER_API_XREF" EntityType="Self.USER_API_XREF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER_EXT" EntityType="Self.USER_EXT" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -78,8 +79,7 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
             <End Role="USER_API_XREF" EntitySet="USER_API_XREF" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CS481Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -91,17 +91,6 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
           <Property Name="void_ind" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="API_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="USER_API_XREF" Relationship="Self.fk_apiId" FromRole="Available_API" ToRole="USER_API_XREF" />
-        </EntityType>
-        <EntityType Name="BLOG">
-          <Key>
-            <PropertyRef Name="BLOG_ID" />
-          </Key>
-          <Property Name="USER_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BLOG_TEXT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CREATE_DT" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UPDATE_DT" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="VOID_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BLOG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="USER_API_XREF">
           <Key>
@@ -140,14 +129,26 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Available_API" EntityType="Self.Available_API" />
-          <EntitySet Name="BLOGs" EntityType="Self.BLOG" />
           <EntitySet Name="USER_API_XREF" EntityType="Self.USER_API_XREF" />
           <EntitySet Name="USER_EXT" EntityType="Self.USER_EXT" />
           <AssociationSet Name="fk_apiId" Association="Self.fk_apiId">
             <End Role="Available_API" EntitySet="Available_API" />
             <End Role="USER_API_XREF" EntitySet="USER_API_XREF" />
           </AssociationSet>
+          <EntitySet Name="BLOGS" EntityType="CS481Model.BLOGS" />
         </EntityContainer>
+        <EntityType Name="BLOGS">
+          <Key>
+            <PropertyRef Name="BLOG_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BLOG_TEXT" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DT" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DT" Type="DateTime" Precision="7" />
+          <Property Name="VOID_IND" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BLOG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -160,18 +161,6 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
                 <ScalarProperty Name="API_Name" ColumnName="API_Name" />
                 <ScalarProperty Name="void_ind" ColumnName="void_ind" />
                 <ScalarProperty Name="API_ID" ColumnName="API_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BLOGs">
-            <EntityTypeMapping TypeName="CS481Model.BLOG">
-              <MappingFragment StoreEntitySet="BLOG">
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="BLOG_TEXT" ColumnName="BLOG_TEXT" />
-                <ScalarProperty Name="CREATE_DT" ColumnName="CREATE_DT" />
-                <ScalarProperty Name="UPDATE_DT" ColumnName="UPDATE_DT" />
-                <ScalarProperty Name="VOID_IND" ColumnName="VOID_IND" />
-                <ScalarProperty Name="BLOG_ID" ColumnName="BLOG_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -196,6 +185,19 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BLOGS">
+            <EntityTypeMapping TypeName="CS481Model.BLOGS">
+              <MappingFragment StoreEntitySet="BLOGS">
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="BLOG_ID" ColumnName="BLOG_ID" />
+                <ScalarProperty Name="VOID_IND" ColumnName="VOID_IND" />
+                <ScalarProperty Name="UPDATE_DT" ColumnName="UPDATE_DT" />
+                <ScalarProperty Name="CREATE_DT" ColumnName="CREATE_DT" />
+                <ScalarProperty Name="BLOG_TEXT" ColumnName="BLOG_TEXT" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -210,7 +212,7 @@ warning 6002: The table/view 'cs481.dbo.USER_EXT' does not have a primary key de
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

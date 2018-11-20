@@ -26,15 +26,20 @@ namespace CS481_Hub.Models
         //This link talks about migration changes
 
 
+
         public DbSet<USER_EXT> User_ext { get; set;}
-        public DbSet<BLOG> Blogs { get; set;}
+        public DbSet<BLOGS> Blog { get; set;}
         public DbSet<Available_API> Available_APIs { get; set;}
         public DbSet<USER_API_XREF> USER_APIs { get; set;}
-       
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+
+
 
         public static ApplicationDbContext Create()
         {
@@ -42,3 +47,4 @@ namespace CS481_Hub.Models
         }
     }
 }
+

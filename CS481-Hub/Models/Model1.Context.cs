@@ -26,8 +26,8 @@ namespace CS481_Hub.Models
         }
     
         public virtual DbSet<Available_API> Available_API { get; set; }
-        public virtual DbSet<BLOG> BLOGs { get; set; }
         public virtual DbSet<USER_API_XREF> USER_API_XREF { get; set; }
         public virtual DbSet<USER_EXT> USER_EXT { get; set; }
+        public virtual DbSet<BLOGS> BLOGS { get; set; }
     }
 }

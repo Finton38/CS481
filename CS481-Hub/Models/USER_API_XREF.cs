@@ -12,16 +12,11 @@ namespace CS481_Hub.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class USER_API_XREF
     {
-        [ForeignKey("Available_API")]
         public int API_ID { get; set; }
-
-
         public string USER_ID { get; set; }
-
         public string void_ind { get; set; }
         [Key]
         public int xref_id { get; set; }

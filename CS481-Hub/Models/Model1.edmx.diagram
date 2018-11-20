@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9f314f5aebaa49a8a242ba7b5fa917de" Name="Diagram1">
         <EntityTypeShape EntityType="CS481Model.Available_API" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CS481Model.BLOG" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CS481Model.USER_API_XREF" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CS481Model.USER_EXT" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="CS481Model.fk_apiId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CS481Model.BLOGS" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
