@@ -22,9 +22,7 @@
             @Html.DisplayFor(modelItem => item.API_Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.API_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.API_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.API_ID })
+            @Html.ActionLink("Delete", "DeleteAsync", new { id=item.API_ID })
         </td>
     </tr>
 }

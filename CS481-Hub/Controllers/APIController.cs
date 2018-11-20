@@ -26,11 +26,11 @@ namespace CS481_Hub.Controllers
         }
 
         // GET: API
-        //get the all APIS for the current user in USER_API_XREF
+        //get the all APIS for the current user in USER_API_XREF where void_ind = n
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId).ToList();
+            var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId && a.void_ind == "n").ToList();
             if (Request.IsAuthenticated)
             {
                 return View(usersAPIs);

@@ -21,18 +21,18 @@ namespace CS481_Hub.Controllers
             db = new ApplicationDbContext();
         }
 
-        // GET: Admin
+        // Show the Admin Screen
         public ActionResult Index()
         {
             return View();
         }
 
-
+        //Show the Admin update screen and pull in all APIs that have not been "deleted"
         public ActionResult Update()
         {
             if (Request.IsAuthenticated)
             {
-                return View(db.Available_APIs.ToList());
+                return View(db.Available_APIs.ToList().Where(a => a.void_ind == "n"));
             }
             else
             {
@@ -42,6 +42,7 @@ namespace CS481_Hub.Controllers
 
 
 
+        //Method to add in a new API through the Admin Screen
         [HttpPost]
         public async Task<ActionResult> CreateNewAPI(Available_API api)
         {
@@ -50,8 +51,8 @@ namespace CS481_Hub.Controllers
                 api.void_ind = "n";
                 db.Available_APIs.Add(api);
                 await db.SaveChangesAsync();
-                AddNewAPIToUsers(api.API_Name);
-                return RedirectToAction("Index", "Home");
+                await AddNewAPIToUsers(api.API_Name);
+                return RedirectToAction("Index", "Admin");
             }else
             {
                 return RedirectToAction("Index", "Home");
@@ -59,7 +60,34 @@ namespace CS481_Hub.Controllers
         }
 
 
-        public ActionResult AddNewAPIToUsers(String apiName)
+        //"Delete" selected API from being used
+        
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var API = db.Available_APIs.SingleOrDefault(a => a.API_ID == id);
+            if (Request.IsAuthenticated)
+            {
+                if (API == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    API.void_ind = "y";
+                    await DeleteAPIFromUsers(id);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //When an Admin adds a new API the API must be added to all existing users.
+        [HttpPost]
+        public async Task<ActionResult> AddNewAPIToUsers(String apiName)
         {
             var allUsers = db.Users.ToList();
             USER_API_XREF userApi = new USER_API_XREF();
@@ -72,7 +100,21 @@ namespace CS481_Hub.Controllers
                 userApi.USER_ID = user.Id;
                 userApi.void_ind = "n";
                 db.USER_APIs.Add(userApi);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
+            }
+            return null;
+        }
+
+        //When an admin "deletes" an API it is deleted from all current user accounts
+        [HttpDelete]
+        public async Task<ActionResult> DeleteAPIFromUsers(int id)
+        {
+            var allUserAPI = db.USER_APIs.ToList().Where(a => a.API_ID == id);
+
+            foreach(var entry in allUserAPI)
+            {
+                entry.void_ind = "y";
+                await db.SaveChangesAsync();
             }
             return null;
         }
