@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CS481_Hub.Models;
@@ -20,12 +21,12 @@ namespace CS481_Hub.Controllers
         }
 
         // GET: Blog
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
-
+        //Pull up the create page to make a new blog
         public ActionResult Create()
         {
             if (Request.IsAuthenticated)
@@ -37,6 +38,7 @@ namespace CS481_Hub.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        //Function to post the new blog
         [HttpPost]
         public ActionResult PostBlog(BLOGS blog)
         {
@@ -44,7 +46,7 @@ namespace CS481_Hub.Controllers
             {
                 DateTime now = DateTime.Now;
                 blog.USER_ID = User.Identity.GetUserId();
-                blog.VOID_IND = "n";           
+                blog.VOID_IND = "n";
                 blog.CREATE_DT = now;
                 db.Blog.Add(blog);
                 db.SaveChanges();
@@ -52,9 +54,87 @@ namespace CS481_Hub.Controllers
             }
             else
             {
-               return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
+        }
+        //Get all blogs for the current user
+        [HttpGet]
+        public ActionResult ListView()
+        {
+            if (Request.IsAuthenticated)
+            {
+                String userID = User.Identity.GetUserId();
+                var blogList = db.Blog.ToList().Where(b => b.USER_ID == userID);
+                return View(blogList);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
 
+        //Function to "delete" a blog
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var blogToDelete = db.Blog.SingleOrDefault(b => b.BLOG_ID == id);
+            String userID = User.Identity.GetUserId();
+            if (Request.IsAuthenticated && blogToDelete.USER_ID == userID)
+            {
+                if (blogToDelete == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    blogToDelete.VOID_IND = "y";
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("ListView", "Blog");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //Create page to edit specific blog
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var blogToEdit = db.Blog.SingleOrDefault(b => b.BLOG_ID == id);
+            String userID = User.Identity.GetUserId();
+            if (Request.IsAuthenticated && blogToEdit.USER_ID == userID)
+            {
+                return View(blogToEdit);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //Function to update the blog
+        [HttpPost]
+        public async Task<ActionResult> doEdit(BLOGS blog)
+        {
+            int blogID = blog.BLOG_ID;
+            DateTime now = DateTime.Now;
+            var previousBlog = db.Blog.SingleOrDefault(b => b.BLOG_ID == blogID);
+            if (Request.IsAuthenticated)
+            {
+                previousBlog.BLOG_TEXT = blog.BLOG_TEXT;
+                previousBlog.TITLE = blog.TITLE;
+                previousBlog.UPDATE_DT = now;
+                previousBlog.CREATE_DT = blog.CREATE_DT;
+                previousBlog.VOID_IND = "n";
+                await db.SaveChangesAsync();
+                return RedirectToAction("ListView", "Blog");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }
