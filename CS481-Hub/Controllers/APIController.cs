@@ -27,10 +27,13 @@ namespace CS481_Hub.Controllers
 
         // GET: API
         //get the all APIS for the current user in USER_API_XREF where void_ind = n
+        //If we select where void is n it will remove the api completly from the users api selection page.
         public ActionResult Index()
         {
+
             string userId = User.Identity.GetUserId();
-            var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId && a.void_ind == "n").ToList();
+            var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId /*&& a.void_ind == "n"*/).ToList();
+            
             if (Request.IsAuthenticated)
             {
                 return View(usersAPIs);
@@ -88,6 +91,7 @@ namespace CS481_Hub.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            
 
         }
 

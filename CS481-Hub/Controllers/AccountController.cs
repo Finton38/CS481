@@ -19,7 +19,7 @@ namespace CS481_Hub.Controllers
         private ApplicationUserManager _userManager;
 
         public AccountController()
-        {
+        {          
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -57,6 +57,7 @@ namespace CS481_Hub.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

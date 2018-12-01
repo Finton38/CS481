@@ -118,5 +118,18 @@ namespace CS481_Hub.Controllers
             }
             return null;
         }
+
+        //Returns view
+        public ActionResult AdminHome()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("AdminHome", "Admin");
+            }
+        }
     }
 }
