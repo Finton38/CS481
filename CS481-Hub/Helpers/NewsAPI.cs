@@ -42,7 +42,7 @@ namespace CS481_Hub.Helpers
             int total = 0;
 
             JObject newsJson = NewsJSON();
-            total = (int)newsJson["totalResults"];
+            total = (int)newsJson["articles"].Count();
             return total;
         }
 

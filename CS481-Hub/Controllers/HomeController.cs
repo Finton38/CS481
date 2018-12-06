@@ -42,8 +42,6 @@ namespace CS481_Hub.Controllers
 
             var userId = User.Identity.GetUserId();
             USER_EXT ext = db.User_ext.SingleOrDefault(u => u.USER_ID == userId);
-
-
             WeatherAPI weather = new WeatherAPI();
             //return json of getweatherforcast method
             //AllowGet
@@ -55,13 +53,14 @@ namespace CS481_Hub.Controllers
             List<NewsAPI> newsList = new List<NewsAPI>();
             int totalResults = new NewsAPI(0).returnTotalResults();
 
-            for(int i = 0; i < totalResults; i++)
+            for(int i = 0; i < totalResults-1; i++)
             {
                 newsList.Add(new NewsAPI(i));
             }
             ViewData["newsList"] = newsList;
             return View();
         }
+
         //Returns view
         public ActionResult RandomFact()
         {
@@ -89,8 +88,4 @@ namespace CS481_Hub.Controllers
         }
 
     }
-
-   
-
-
 }
