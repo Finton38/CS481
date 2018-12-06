@@ -43,12 +43,13 @@ namespace CS481_Hub.Controllers
             var userId = User.Identity.GetUserId();
             USER_EXT ext = db.User_ext.SingleOrDefault(u => u.USER_ID == userId);
 
+
             WeatherAPI weather = new WeatherAPI();
             //return json of getweatherforcast method
             //AllowGet
             return Json(weather.getWeatherForcast(ext.ZIPCODE), JsonRequestBehavior.AllowGet);
         }
-
+        
         public ActionResult News()
         {
             List<NewsAPI> newsList = new List<NewsAPI>();
@@ -60,6 +61,31 @@ namespace CS481_Hub.Controllers
             }
             ViewData["newsList"] = newsList;
             return View();
+        }
+        //Returns view
+        public ActionResult RandomFact()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //Returns view
+        public ActionResult Translation()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
     }

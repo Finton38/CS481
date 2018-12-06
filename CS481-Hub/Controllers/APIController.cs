@@ -32,8 +32,11 @@ namespace CS481_Hub.Controllers
         {
 
             string userId = User.Identity.GetUserId();
-            var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId /*&& a.void_ind == "n"*/).ToList();
-            
+            var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId /*&& a.void_ind == "n"*/);
+            var AllAPIs = db.Available_APIs;
+            //if(AllAPIs != usersAPIs)
+            //update users_API_XREF
+
             if (Request.IsAuthenticated)
             {
                 return View(usersAPIs);

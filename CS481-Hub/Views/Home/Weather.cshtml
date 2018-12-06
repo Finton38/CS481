@@ -7,28 +7,29 @@
 
 
 <h2>Weather</h2>
-<p id="Name"></p>
-<p id="Temp"></p>
-<p id="Humidity"></p>
-<button>Get Weather</button>
+<h4>Location: </h4><p id="Name"></p>
+<h4>Temprature: </h4><p id="Temp"></p>
+<h4>Humidity: </h4><p id="Humidity"></p>
 
 
-@* Ajax script on weather page that goes through the controller *@
+
+
+
+                       @* Ajax script on weather page that goes through the controller *@
 <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                //razer syntax for home controller
-                $.get("@Url.Action("GetWeather", "Home")", function (response) {
-                    //response
-                    console.log(response);
-                    $("#Name").text(response.name);
-                    $("#Temp").text(response.main.temp);
-                    $("#Humidity").text(response.main.humidity);
-                });
-            });
+    $(document).ready(function () {
+        //razer syntax for home controller
+        $.get("@Url.Action("GetWeather", "Home")", function (response) {
+            //response
+            console.log(response);
+            $("#Name").text(response.name);
+            $("#Temp").text(response.main.temp);
+            $("#Humidity").text(response.main.humidity);
+            
         });
-
+    });
 </script>
+
 
 
 

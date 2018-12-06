@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "RandomFact";
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+<h2>RandomFact</h2>
+<p id="number"></p>
+
+
+
+@* All Ajax public callback 
+    Can make cleaner by making object in helper section.*@
+<script>
+    $(document).ready(function () {
+        
+        $.get('http://numbersapi.com/random/math?callback=showNumber', function (data) {
+            //console.log(data);
+            $('#number').text(data);
+        });
+    });
+</script>
+
+

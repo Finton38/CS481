@@ -364,6 +364,8 @@
     <Content Include="Views\Blog\ListView.cshtml" />
     <Content Include="Views\Blog\Update.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Views\Home\RandomFact.cshtml" />
+    <Content Include="Views\Home\Translation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

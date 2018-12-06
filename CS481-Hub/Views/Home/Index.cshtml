@@ -8,27 +8,27 @@
 
 @if (Request.IsAuthenticated)
 {
- <div class="container">
-     <div class="row">
-         <div class="col-md-4">
-             <button class="btn btn-default btn-lg btn-block" onclick="window.location.href='/API/Index'"><br>API<br>Selection<br><br></button>
-         </div>
-         <div class="col-md-4">
-             <button class="btn btn-default btn-lg btn-block" onclick="window.location.href='/UserExt/UserExtEdit'"><br>Edit<br>Profile<br><br></button>
-         </div>
-         @if (User.IsInRole("Admin"))
-         {
-             <div class="col-md-4">
-             <button class="btn btn-default btn-lg btn-block" onclick="window.location.href='/Admin/AdminHome'"><br>Admin<br>Home<br><br></button>
-             </div>
-         }
-     </div>
- </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-default btn-lg btn-block" onclick="window.location.href='/API/Index'"><br>API<br>Selection<br><br></button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-default btn-lg btn-block" onclick="window.location.href='/UserExt/UserExtEdit'"><br>Edit<br>Profile<br><br></button>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-md-4">
+                    <button class="btn btn-default btn-lg btn-block" onclick="window.location.href='/Admin/AdminHome'"><br>Admin<br>Home<br><br></button>
+                </div>
+            }           
+        </div>
+    </div>
 }
 
-else{ 
- <div>
-     <h3>Please log in or register an account.</h3>
- </div>
-    
+else{
+    <div>
+        <h3>Please log in or register an account.</h3>
+    </div>
+
 }
