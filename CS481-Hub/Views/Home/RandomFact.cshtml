@@ -15,7 +15,7 @@
 <script>
     $(document).ready(function () {
         
-        $.get('http://numbersapi.com/random/math?callback=showNumber', function (data) {
+        $.get('http://numbersapi.com/random/math', function (data) {
             //console.log(data);
             $('#number').text(data);
         });
