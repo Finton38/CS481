@@ -86,6 +86,5 @@ namespace CS481_Hub.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
     }
 }
