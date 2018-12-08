@@ -5,11 +5,27 @@
     @Scripts.Render("~/bundles/bootstrap")
 }
 
+
+<!---- Add drop down to change language?-->
+
 <h3> Enter Something you would like to translate</h3>
 <input id="value" />
-<button>Click</button>
-<p id="translate"></p>
+<button onclick="myFunction()">Translate</button>
+<div id="myDiv" class="card text-white bg-success mb-3" style="display:none; max-width: 20rem;">
+    <div class="card-header">Yoda Says</div>
+    <div class="card-body">
+        <p id="translate" class="card-text"></p>
+    </div>
+</div>
 
+
+<script>
+    function myFunction() {
+        if (myDiv.style.display === "none") {
+            myDiv.style.display = "block";
+        }
+    }
+</script>
 
 @* All Ajax public callback
     Can make cleaner by making object in helper section.*@

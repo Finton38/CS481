@@ -5,8 +5,9 @@
     @Scripts.Render("~/bundles/bootstrap")
 }
 
-<h2>RandomFact</h2>
+<h2>Random Math Fact</h2>
 <p id="number"></p>
+<button>Wow! Give an another!</button>
 
 
 
@@ -19,6 +20,12 @@
             //console.log(data);
             $('#number').text(data);
         });
+    });
+</script>
+
+<script>
+    $("button").click(function () {
+        location.reload();
     });
 </script>
 
