@@ -21,7 +21,9 @@ namespace CS481_Hub.Controllers
 
         public ActionResult Index()
         {
+            ViewData["apiList"] = getActiveAPIs();
             return View();
+
         }
 
         //Returns view
@@ -29,6 +31,7 @@ namespace CS481_Hub.Controllers
         {
             if (Request.IsAuthenticated)
             {
+                ViewData["apiList"] = getActiveAPIs();
                 return View();
             }
             else
@@ -57,6 +60,7 @@ namespace CS481_Hub.Controllers
             {
                 newsList.Add(new NewsAPI(i));
             }
+            ViewData["apiList"] = getActiveAPIs();
             ViewData["newsList"] = newsList;
             return View();
         }
@@ -66,6 +70,7 @@ namespace CS481_Hub.Controllers
         {
             if (Request.IsAuthenticated)
             {
+                ViewData["apiList"] = getActiveAPIs();
                 return View();
             }
             else
@@ -79,12 +84,28 @@ namespace CS481_Hub.Controllers
         {
             if (Request.IsAuthenticated)
             {
+                ViewData["apiList"] = getActiveAPIs();
                 return View();
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public List<String> getActiveAPIs()
+        {
+            List<String> activeList = new List<String>();
+            var userId = User.Identity.GetUserId();
+            var active = db.USER_APIs.Where(u => u.USER_ID == userId && u.void_ind == "n").ToList();
+
+            foreach(var api in active)
+            {
+                var APIName = db.Available_APIs.Where(a => a.API_ID == api.API_ID).SingleOrDefault();
+                activeList.Add(APIName.API_Name);
+            }
+
+            return activeList;
         }
     }
 }

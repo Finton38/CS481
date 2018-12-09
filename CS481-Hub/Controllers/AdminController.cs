@@ -73,8 +73,7 @@ namespace CS481_Hub.Controllers
                 }
                 else
                 {
-                    API.void_ind = "y";
-                    await DeleteAPIFromUsers(id);
+                    DeleteAPIFromUsers(id);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index", "Home");
                 }
@@ -107,14 +106,14 @@ namespace CS481_Hub.Controllers
 
         //When an admin "deletes" an API it is deleted from all current user accounts
         [HttpDelete]
-        public async Task<ActionResult> DeleteAPIFromUsers(int id)
+        public ActionResult DeleteAPIFromUsers(int id)
         {
             var allUserAPI = db.USER_APIs.ToList().Where(a => a.API_ID == id);
 
             foreach(var entry in allUserAPI)
             {
                 entry.void_ind = "y";
-                await db.SaveChangesAsync();
+                db.USER_APIs.Remove(entry);
             }
             return null;
         }

@@ -8,7 +8,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Available_API.API_Name)
+            @Html.DisplayName("API")
         </th>
         <th></th>
     </tr>
@@ -21,11 +21,11 @@
         <td>
             @if (item.void_ind == "y")
             {
-                @Html.ActionLink("Turn on", "TurnOn", new { id = item.xref_id })
+                @Html.ActionLink("Turn on", "TurnOn", new { id = item.xref_id }, new {@style = "text-decoration: none;"})
             }
             else
             {
-                @Html.ActionLink("Turn off", "TurnOff", new { id = item.xref_id })
+                @Html.ActionLink("Turn off", "TurnOff", new { id = item.xref_id }, new { @style = "text-decoration: none;" })
             }
 
         </td>

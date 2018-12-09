@@ -7,14 +7,42 @@
 
 @{
     var articles = (List<NewsAPI>)ViewData["newsList"];
+    var activeAPIs = (List<String>)ViewData["apiList"];
 }
+
+<nav class="navbar navbar-default" style="background-color: gray; margin-top: 40px;">
+    <div class="container-fluid" style="margin-top: -35px;">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li style="font-size: 20px;"><a>@Html.ActionLink("Home", "Index", "Home")</a></li>
+                @if (activeAPIs.Contains("WeatherAPI"))
+                {
+                    <li style="font-size: 20px;"><a>@Html.ActionLink("Weather", "Weather", "Home")</a></li>
+                }
+                @if (activeAPIs.Contains("NewsAPI"))
+                {
+                    <li style="font-size: 20px;"><a>@Html.ActionLink("News", "News", "Home", null, new { @style = "color: #0ce3ac;" })</a></li>
+                }
+                @if (activeAPIs.Contains("TranslateAPI"))
+                {
+                    <li style="font-size: 20px;"><a>@Html.ActionLink("Translation", "Translation", "Home")</a></li>
+                }
+                @if (activeAPIs.Contains("RandomFactAPI"))
+                {
+                    <li style="font-size: 20px;"><a>@Html.ActionLink("Random Fact", "RandomFact", "Home")</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
 
 @foreach (var article in @articles) // Print the list
 {
     <h3>"@article.getTitle()" - @article.getSource()</h3>
     <a href="@article.getURL()">Read More</a>
     <hr />
-   // @Html.Label(article.getSource());
+    // @Html.Label(article.getSource());
 }
 
 

@@ -26,20 +26,47 @@
                         <li>@Html.ActionLink("Admin", "AdminHome", "Admin")</li>
                     }
                 </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - MyHub</p>
-            </footer>
-        </div>
+    </div>
+    <div class="container body-content mainBody" style="min-height: 100%;">
+        @RenderBody()
+    </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </body>
+    <footer class="mainFooter">
+        <hr />
+        <p>&copy; @DateTime.Now.Year - MyHub</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
 </html>
+
+<style>
+
+    html, body{
+        height: 100%;
+        margin: 0;
+    }
+
+    .mainBody{
+        overflow: auto;
+        padding-bottom: 100px;
+    }
+
+    /*.mainFooter {
+        height: 50px;
+    }*/
+
+    .mainFooter{
+        position:relative;
+        height:50px;
+        margin-top: -50px;
+        clear: both;
+
+    }
+    
+</style>

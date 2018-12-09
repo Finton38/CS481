@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Update</h2>
+<h2>Delete</h2>
 
 <table class="table">
     <tr>
@@ -22,7 +22,7 @@
             @Html.DisplayFor(modelItem => item.API_Name)
         </td>
         <td>
-            @Html.ActionLink("Delete", "DeleteAsync", new { id=item.API_ID })
+            @Html.ActionLink("Delete", "DeleteAsync", new { id=item.API_ID }, new { @style = "text-decoration: none;" })
         </td>
     </tr>
 }
