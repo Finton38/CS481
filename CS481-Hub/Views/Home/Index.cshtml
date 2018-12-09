@@ -8,7 +8,7 @@
 @if (Request.IsAuthenticated)
 {
 
-    <nav class="navbar navbar-default" style="background-color: gray; margin-top: 40px;">
+    <nav class="navbar navbar-default" style="background-color: #525050; margin-top: 40px;">
         <div class="container-fluid" style="margin-top: -35px;">
             <div class="navbar-header">
                 <ul class="nav navbar-nav">
@@ -52,7 +52,7 @@ else
         <div class="jumbotron">
             <h1 style="text-align:center;">Welcome to MyHub!</h1>
             <h2 style="text-align:center;">MyHub provides popular APIs to be used with ease!</h2>
-            <h3 style="text-align:center;">sign up now!</h3>
+            <h3 style="text-align:center;"><a onclick="window.location.href='/Account/Register'">sign up now!</a></h3>
         </div>
     </div>
 

@@ -56,7 +56,7 @@ namespace CS481_Hub.Controllers
             List<NewsAPI> newsList = new List<NewsAPI>();
             int totalResults = new NewsAPI(0).returnTotalResults();
 
-            for(int i = 0; i < totalResults-1; i++)
+            for(int i = 0; i < 5; i++)
             {
                 newsList.Add(new NewsAPI(i));
             }
