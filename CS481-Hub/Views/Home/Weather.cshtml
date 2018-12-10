@@ -3,7 +3,9 @@
     ViewBag.Title = "Weather";
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/weather-icons.min.css")
 }
+
 
 @{
     var activeAPIs = (List<String>)ViewData["apiList"];
@@ -36,18 +38,28 @@
 </nav>
 
 
-<div class="container">
-    <div class="row">
-        <div class="card text-white bg-primary mb-4" style="max-width: 20rem; padding: 20px;">
-            <h2>Weather</h2>
-            <h4>Location: </h4><p id="Name"></p>
-            <h4>Temprature: </h4><p id="Temp"></p>
-            <h4>Humidity: </h4><p id="Humidity"></p>
+@*<div class="container">
+        <div class="row">
+            <div class="card text-white bg-primary mb-4" style="max-width: 114rem; max-height:80rem;  padding: 20px;">
+                <h2>Weather</h2>
+                <h4>Location: </h4><p id="Name"></p>
+                <h4>Temprature: </h4><p id="Temp"></p>
+                <h4>Humidity: </h4><p id="Humidity"></p>
+                <i id="weatherIcon"></i>
+            </div>
+        </div>
+    </div>*@
+ 
+<div class="jumbotronWeather" style="justify-content: center;">
+    <div class="jumbotron" style="padding-left:260px; padding-right: 260px;">
+        <i id="weatherIcon"><h4 id="Name"></h4><h4 id="condition"></h4></i>
+        
+        <div class="weatherInfo">
+            <h2 id="Temp"></h2>
+            <h4 id="highTemp"></h4><h4 id="lowTemp"></h4>
         </div>
     </div>
 </div>
-
-
 
 
 
@@ -59,13 +71,97 @@
             //response
             console.log(response);
             $("#Name").text(response.name);
-            $("#Temp").text(response.main.temp);
+            $("#highTemp").text("high " + response.main.temp_max + "º");
+            $("#lowTemp").text("low " + response.main.temp_min + "º");
+            $("#Temp").text(response.main.temp + "º");
             $("#Humidity").text(response.main.humidity);
+            $("#condition").text(response.weather[0].description);
 
+            if (response.weather[0].description === 'clear sky') {
+                $("#weatherIcon").addClass("wi wi-day-sunny iconSize");
+            }
+            if (response.weather[0].description === 'few clouds') {
+                $("#weatherIcon").addClass("wi wi-day-cloudy iconSize");
+            }
+            if (response.weather[0].description === 'scattered clouds') {
+                $("#weatherIcon").addClass("wi wi-day-cloudy iconSize");
+            }
+            if (response.weather[0].description === 'broken clouds') {
+                $("#weatherIcon").addClass("wi wi-day-cloudy iconSize");
+            }
+            if (response.weather[0].description === 'shower rain') {
+                $("#weatherIcon").addClass("wi wi-day-showers iconSize");
+            }
+            if (response.weather[0].description === 'rain') {
+                $("#weatherIcon").addClass("wi wi-day-rain iconSize");
+            }
+            if (response.weather[0].description === 'thunderstorm') {
+                $("#weatherIcon").addClass("wi wi-day-thunderstorm iconSize");
+            }
+            if (response.weather[0].description === 'snow') {
+                $("#weatherIcon").addClass("wi wi-day-snow iconSize");
+            }
+            if (response.weather[0].description === 'mist') {
+                $("#weatherIcon").addClass("wi wi-day-rain iconSize");
+            }
         });
     });
 </script>
 
+<style>
+
+    .weatherInfo {
+        position: relative;
+        top: -101px;
+        left: 100px;
+        display: inline-block;
+    }
+
+    .iconSize {
+        font-size: 150px;
+        color: rgb(16,220,158);
+        margin-left: -200px;
+        margin-top: 30px;
+    }
+
+    .jumbotronWeather {
+        margin-top: 40px;
+        display:flex;
+    }
+
+    #Name{
+        position:relative;
+        top: -220px;
+        left: 17px;
+        font-size: 25px;
+    }
+
+    #condition {
+        position: relative;
+        left: 40px;
+        font-size: 18px;
+    }
+
+    #Temp {
+        font-size: 60px;
+        position: relative;
+        left: 50px;
+        top: 20px;
+    }
+
+    #highTemp {
+        position: relative;
+        top: 40px;
+        left: 150px;
+    }
+
+    #lowTemp {
+        position: relative;
+        top: 11px;
+        left: 10px;
+    }
+
+</style>
 
 
 
