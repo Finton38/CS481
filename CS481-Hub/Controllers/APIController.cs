@@ -30,12 +30,10 @@ namespace CS481_Hub.Controllers
         //If we select where void is n it will remove the api completly from the users api selection page.
         public ActionResult Index()
         {
-
+            ViewData["apiList"] = getActiveAPIs();
             string userId = User.Identity.GetUserId();
             var usersAPIs = db.USER_APIs.Where(a => a.USER_ID == userId /*&& a.void_ind == "n"*/).ToList();
             var AllAPIs = db.Available_APIs;
-            //if(AllAPIs != usersAPIs)
-            //update users_API_XREF
 
             if (Request.IsAuthenticated)
             {
@@ -93,11 +91,21 @@ namespace CS481_Hub.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            
-
         }
+        public List<String> getActiveAPIs()
+        {
+            List<String> activeList = new List<String>();
+            var userId = User.Identity.GetUserId();
+            var active = db.USER_APIs.Where(u => u.USER_ID == userId && u.void_ind == "n").ToList();
 
+            foreach (var api in active)
+            {
+                var APIName = db.Available_APIs.Where(a => a.API_ID == api.API_ID).SingleOrDefault();
+                activeList.Add(APIName.API_Name);
+            }
+
+            return activeList;
+        }
 
 
 

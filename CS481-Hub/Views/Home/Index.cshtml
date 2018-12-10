@@ -29,7 +29,11 @@
                     {
                         <li style="font-size: 20px;"><a>@Html.ActionLink("Random Fact", "RandomFact", "Home")</a></li>
                     }
-                    <li style="font-size: 20px;"><a>@Html.ActionLink("Blogs", "RandomFact", "Home")</a></li>
+                    @if (activeAPIs.Contains("BlogAPI"))
+                    {
+                        <li style="font-size: 20px;"><a>@Html.ActionLink("Blog", "ListView", "Blog")</a></li>
+                    }
+                    
                 </ul>
             </div>
         </div>

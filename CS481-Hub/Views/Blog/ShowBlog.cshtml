@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNet.Identity;
+@model CS481_Hub.Models.BLOGS
+
+@{
+    ViewBag.Title = "ShowBlog";
+}
+@{
+    var userId = User.Identity.GetUserId();
+}
+
+<h2>ShowBlog</h2>
+
+<div>
+    <h4>BLOGS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TITLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITLE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BLOG_TEXT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BLOG_TEXT)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "ListView", null, new { @class = "btn btn-default" })
+</p>

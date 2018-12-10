@@ -61,11 +61,13 @@ namespace CS481_Hub.Controllers
         [HttpGet]
         public ActionResult ListView()
         {
+            ViewData["apiList"] = getActiveAPIs();
             if (Request.IsAuthenticated)
             {
                 String userID = User.Identity.GetUserId();
                 var blogList = db.Blog.ToList().Where(b => b.USER_ID == userID);
-                return View(blogList);
+                var blogList2 = db.Blog.ToList();
+                return View(blogList2);
             }
             else
             {
@@ -136,5 +138,37 @@ namespace CS481_Hub.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        //Get Current blog
+        [HttpGet]
+        public ActionResult ShowBlog(int id)
+        {
+            var blogToShow = db.Blog.SingleOrDefault(b => b.BLOG_ID == id);
+            String userID = User.Identity.GetUserId();
+            if (Request.IsAuthenticated)
+            {
+                return View(blogToShow);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public List<String> getActiveAPIs()
+        {
+            List<String> activeList = new List<String>();
+            var userId = User.Identity.GetUserId();
+            var active = db.USER_APIs.Where(u => u.USER_ID == userId && u.void_ind == "n").ToList();
+
+            foreach (var api in active)
+            {
+                var APIName = db.Available_APIs.Where(a => a.API_ID == api.API_ID).SingleOrDefault();
+                activeList.Add(APIName.API_Name);
+            }
+
+            return activeList;
+        }
+
     }
 }

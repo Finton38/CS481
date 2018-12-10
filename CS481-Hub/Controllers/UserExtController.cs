@@ -72,6 +72,7 @@ namespace CS481_Hub.Controllers
                 String currentUserId = User.Identity.GetUserId();
                 var userInfo = db.User_ext.SingleOrDefault(v => v.USER_ID == currentUserId);
 
+
                 if (userInfo == null)
                 {
                     return HttpNotFound();
@@ -142,6 +143,6 @@ namespace CS481_Hub.Controllers
          
             return RedirectToAction("Index", "Home");
         }
-    
+
     }
 }

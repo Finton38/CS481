@@ -13,23 +13,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Available_API.API_Name)
-        </td>
-        <td>
-            @if (item.void_ind == "y")
-            {
-                @Html.ActionLink("Turn on", "TurnOn", new { id = item.xref_id }, new {@style = "text-decoration: none;"})
-            }
-            else
-            {
-                @Html.ActionLink("Turn off", "TurnOff", new { id = item.xref_id }, new { @style = "text-decoration: none;" })
-            }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available_API.API_Name)
+            </td>
+            <td>
+                @if (item.void_ind == "y")
+                {
+                    @Html.ActionLink("Turn on", "TurnOn", new { id = item.xref_id }, new { @style = "text-decoration: none; class: @class = btn btn - default;"})
+               }
+                else
+                {
+                        @Html.ActionLink("Turn off", "TurnOff", new { id = item.xref_id }, new { @style = "text-decoration: none;" })
+                }
 
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>
