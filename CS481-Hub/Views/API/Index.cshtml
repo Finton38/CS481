@@ -5,7 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table class="table"><br />
+<h2 id="title">API Selection</h2>
+<div class="jumbotronAPISelect">
+    <div class="jumbotron">
+<table class="table selectTable" style="font-size: 20px;">
     <tr>
         <th>
             @Html.DisplayName("API")
@@ -32,5 +35,21 @@
             </td>
         </tr>
     }
-
 </table>
+        </div>
+    </div>
+
+<style>
+
+    .jumbotronAPISelect{
+        margin-top: 20px;
+    }
+
+    #title {
+        margin-top: 40px;
+    }
+
+    .selectTable {
+        margin-top: 0px;
+    }
+</style>
