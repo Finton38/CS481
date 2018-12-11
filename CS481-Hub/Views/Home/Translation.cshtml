@@ -56,14 +56,14 @@
             <option value="leetspeak">leetspeak</option>
         </select>
         <div id="myDiv" class="card text-white bg-success mb-3" style="display:none; max-width: 20rem; margin-left: 400px; margin-top: 30px;">
-            <div class="card-header">Yoda Says</div>
+            <div id ="whoSaid"class="card-header"></div>
             <div class="card-body">
                 <p id="translate" class="card-text"></p>
             </div>
         </div>
     </div>
 </div>
-
+    </div>
 
 
 <script>
@@ -85,6 +85,7 @@
             $.get('http://api.funtranslations.com/translate/' + toLang + '?text=' + toTranslate, function (data) {
                 //console.log(data);
                 $('#translate').text(data.contents.translated);
+                $('#whoSaid').text(toLang);
             });
         });
     });
