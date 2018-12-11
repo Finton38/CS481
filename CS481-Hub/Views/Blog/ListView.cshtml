@@ -62,8 +62,7 @@
             @if (item.USER_ID == userId)
             {
                 <td>
-                    @Html.ActionLink("Update", "Update", new { id = item.BLOG_ID }, new { @class = "btn btn-default" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.BLOG_ID }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Update", "Update", new { id = item.BLOG_ID }, new { @class = "btn btn-default" }) 
                 </td>
             }
         </tr>

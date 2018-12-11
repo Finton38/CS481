@@ -12,22 +12,21 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>BLOGS</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.BLOG_ID)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TITLE, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.TITLE, "" ,htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TITLE, new { htmlAttributes = new { @class = "form-control", maxlength = "50", required = "required" } })
+            @Html.EditorFor(model => model.TITLE, new { htmlAttributes = new { @class = "form-control", maxlength = "50", required = "required", placeholder="Title" } })
             @Html.ValidationMessageFor(model => model.TITLE, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.BLOG_TEXT, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.BLOG_TEXT, "" ,htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.BLOG_TEXT, new { htmlAttributes = new { @class = "form-control", maxlength = "255", required = "required" } })
+            @Html.TextAreaFor(model => model.BLOG_TEXT, new { htmlAttributes = new { @class = "form-control", maxlength = "255", required = "required", style = "resize: none; width: 700px; height: 100px;" } })
             @Html.ValidationMessageFor(model => model.BLOG_TEXT, "", new { @class = "text-danger" })
         </div>
     </div>
