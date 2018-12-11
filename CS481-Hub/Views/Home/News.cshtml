@@ -37,12 +37,31 @@
 </nav>
 
 
-@foreach (var article in @articles) // Print the list
-{
-    <h3>"@article.getTitle()" - @article.getSource()</h3>
-    <a href="@article.getURL()">Read More</a>
-    <hr />
-    // @Html.Label(article.getSource());
-}
+<div class="jumbotronNews">
+    <div class="jumbotron">
+        <h1 id="title">Top Headlines</h1>
+        <hr />
+        @foreach (var article in @articles) // Print the list
+        {
+            <h3>"@article.getTitle()" - @article.getSource()</h3>
+            <a href="@article.getURL()">Read More</a>
+            <hr />
+        }
+    </div>
+</div>
+
+<style>
+    .jumbotronNews {
+        margin-top: 20px;
+    }
+
+    #title {
+        text-align: center;
+        margin-top: -10px;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+</style>
 
 
