@@ -3473,9 +3473,9 @@ fieldset[disabled] .btn-link:focus {
   border-radius: 3px;
 }
 .btn-block {
-  display: inline-block;
+  display:block;
   width: 100%;
-  margin-top:20%;
+ 
 }
 .btn-block + .btn-block {
   margin-top: 5px;
