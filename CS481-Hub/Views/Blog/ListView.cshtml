@@ -9,6 +9,8 @@
 @{
     var activeAPIs = (List<String>)ViewData["apiList"];
     var userId = User.Identity.GetUserId();
+
+
 }
 <nav class="navbar navbar-default" style="background-color: #525050; margin-top: 40px;">
     <div class="container-fluid" style="margin-top: -35px;">
@@ -31,10 +33,8 @@
                 {
                     <li style="font-size: 20px;"><a>@Html.ActionLink("Random Fact", "RandomFact", "Home")</a></li>
                 }
-                @if (activeAPIs.Contains("BlogAPI"))
-                {
                     <li style="font-size: 20px;"><a>@Html.ActionLink("Blog", "ListView", "Blog")</a></li>
-                }
+                
             </ul>
         </div>
     </div>
@@ -56,8 +56,9 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.TITLE, "ShowBlog", new { id = item.BLOG_ID }, new { @class = "btn btn-default" })
+                @Html.ActionLink(item.TITLE, "ShowBlog", new { id = item.BLOG_ID }, new { @style="text-decoration: none;"})
             </td>
+            
             @if (item.USER_ID == userId)
             {
                 <td>

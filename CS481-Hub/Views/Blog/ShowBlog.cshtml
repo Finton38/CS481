@@ -9,37 +9,46 @@
 }
 
 <h2>ShowBlog</h2>
+<div class="jumbotronBlog">
+    <div class="jumbotron">
+        <div>
+            <h4>@Html.DisplayFor(model => model.TITLE)</h4>
+            <hr />
+            <div class="jumbotronInside">
+                @Html.DisplayFor(model => model.BLOG_TEXT)
 
-<div>
-    <h4>BLOGS</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.USER_ID)
-        </dt>
+            </div>
+            
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.USER_ID)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TITLE)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TITLE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BLOG_TEXT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BLOG_TEXT)
-        </dd>
-    </dl>
+    </div>
 </div>
+
+
 
 <p>
     @Html.ActionLink("Back to List", "ListView", null, new { @class = "btn btn-default" })
 </p>
+<style>
+
+    .translationField {
+        text-align: center;
+    }
+
+    .jumbotronBlog {
+        margin-top: 20px;
+    }
+    .jumbotronInside {
+        margin-top: 20px;
+        background-color: #808080;
+        border-radius: 5px;
+        height: 250px;
+    }
+
+    #title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+</style>

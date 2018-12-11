@@ -75,6 +75,8 @@ namespace CS481_Hub.Controllers
             }
         }
 
+        
+
         //Function to "delete" a blog
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
@@ -169,6 +171,5 @@ namespace CS481_Hub.Controllers
 
             return activeList;
         }
-
     }
 }
