@@ -45,6 +45,16 @@
         <div class="translationField">
         <input id="value" />
         <button type="button" class="btn btn-secondary" onclick="myFunction()" style="height: 25px; padding-top: 0px; margin-bottom: 5px; padding-bottom: 4px; border-bottom-width: 2px;">Translate</button>
+        <select id="lang">
+            <option value="yoda">Yoda</option>
+            <option value="pirate">Pirate</option>
+            <option value="sith">Sith</option>
+            <option value="piglatin">Piglatin</option>
+            <option value="valspeak">Valspeak</option>
+            <option value="minion">Minion</option>
+            <option value="vulcan">Vulcan</option>
+            <option value="leetspeak">leetspeak</option>
+        </select>
         <div id="myDiv" class="card text-white bg-success mb-3" style="display:none; max-width: 20rem; margin-left: 400px; margin-top: 30px;">
             <div class="card-header">Yoda Says</div>
             <div class="card-body">
@@ -70,7 +80,9 @@
     $(document).ready(function () {
         $("button").click(function () {
             var toTranslate = $("#value").val();
-            $.get('http://api.funtranslations.com/translate/yoda?text=' + toTranslate, function (data) {
+            var toLang = $("#lang :selected").text();
+            
+            $.get('http://api.funtranslations.com/translate/' + toLang + '?text=' + toTranslate, function (data) {
                 //console.log(data);
                 $('#translate').text(data.contents.translated);
             });
