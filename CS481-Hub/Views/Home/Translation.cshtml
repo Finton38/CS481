@@ -38,15 +38,21 @@
 
 <!---- Add drop down to change language?-->
 
-<h3> Enter Something you would like to translate</h3>
-<input id="value" />
-<button type="button" class="btn btn-secondary" onclick="myFunction()" style="height: 25px; padding-top: 0px; margin-bottom: 5px; padding-bottom: 4px; border-bottom-width: 2px;">Translate</button>
-<div id="myDiv" class="card text-white bg-success mb-3" style="display:none; max-width: 20rem;">
-    <div class="card-header">Yoda Says</div>
-    <div class="card-body">
-        <p id="translate" class="card-text"></p>
+<div class="jumbotronTranslate">
+    <div class="jumbotron">
+        <h3 id="title"> Enter Something you would like to translate</h3>
+        <div class="translationField">
+        <input id="value" />
+        <button type="button" class="btn btn-secondary" onclick="myFunction()" style="height: 25px; padding-top: 0px; margin-bottom: 5px; padding-bottom: 4px; border-bottom-width: 2px;">Translate</button>
+        <div id="myDiv" class="card text-white bg-success mb-3" style="display:none; max-width: 20rem; margin-left: 400px; margin-top: 30px;">
+            <div class="card-header">Yoda Says</div>
+            <div class="card-body">
+                <p id="translate" class="card-text"></p>
+            </div>
+        </div>
     </div>
 </div>
+
 
 
 <script>
@@ -62,11 +68,28 @@
 <script>
     $(document).ready(function () {
         $("button").click(function () {
-            var HTML = $("#value").val();
-            $.get('http://api.funtranslations.com/translate/yoda?text=' + HTML, function (data) {
+            var toTranslate = $("#value").val();
+            $.get('http://api.funtranslations.com/translate/yoda?text=' + toTranslate, function (data) {
                 //console.log(data);
                 $('#translate').text(data.contents.translated);
             });
         });
     });
 </script>
+
+<style>
+
+    .translationField{
+        text-align:center;
+    }
+
+    .jumbotronTranslate{
+        margin-top: 20px;
+    }
+
+    #title{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+</style>

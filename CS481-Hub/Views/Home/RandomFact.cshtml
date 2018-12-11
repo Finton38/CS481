@@ -36,10 +36,14 @@
     </div>
 </nav>
 
+<div class="jumbotronFact">
+    <div class="jumbotron">
+        <h2 id="title">Random Math Fact</h2>
+        <p class="factField" id="number"></p>
+        <button type="button" class="btn btn-secondary factBtn">Wow! Give an another!</button>
+    </div>
+</div>
 
-<h2>Random Math Fact</h2>
-<p id="number"></p>
-<button type="button" class="btn btn-primary">Wow! Give an another!</button>
 
 
 
@@ -61,3 +65,25 @@
     });
 </script>
 
+<style>
+
+    .factBtn {
+        margin-left: 400px;
+        margin-top: 30px;
+    }
+
+    .factField {
+        text-align: center;
+    }
+
+    .jumbotronFact {
+        margin-top: 20px;
+    }
+
+    #title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+
+</style>
